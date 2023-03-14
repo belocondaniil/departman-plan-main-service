@@ -22,10 +22,10 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
 
   const config = new DocumentBuilder()
-    .setTitle('Invalidity charts')
-    .setDescription('Invalidity charts API description')
+    .setTitle('Department plan')
+    .setDescription('Department plan API description')
     .setVersion('1.0.0')
-    .addTag('invalidity-charts')
+    .addTag('department-plan')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api/docs', app, document);
