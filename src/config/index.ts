@@ -12,6 +12,13 @@ export enum Envs {
   staging = 'staging',
 }
 
+export enum ElementType {
+  septum = 'septum',
+  wall = 'wall',
+  door = 'door',
+  block = 'block',
+}
+
 export enum ServerMessages {
   OK = 'OK',
   CREATED = 'CREATED',
