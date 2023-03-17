@@ -4,6 +4,7 @@ import {
   HttpStatus,
   NotFoundException,
   UnauthorizedException,
+  UnprocessableEntityException,
 } from '@nestjs/common';
 
 import { ServerMessages } from '.';
@@ -13,6 +14,14 @@ export function forbiddenError(message?: string) {
     message: message || ServerMessages.FORBIDDEN,
     error: message || ServerMessages.FORBIDDEN,
     statusCode: HttpStatus.FORBIDDEN,
+  });
+}
+
+export function unprocessableEntity(message?: string) {
+  throw new UnprocessableEntityException({
+    message: message || ServerMessages.UNPROCESSABLE_ENTITY,
+    error: message || ServerMessages.UNPROCESSABLE_ENTITY,
+    statusCode: HttpStatus.UNPROCESSABLE_ENTITY,
   });
 }
 
