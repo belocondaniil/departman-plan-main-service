@@ -17,10 +17,10 @@ export class DepartmentElement {
   @JoinColumn()
   type: AvailableElement;
 
-  @Column('array')
-  position: string[];
+  @Column('point')
+  position: string;
 
-  @Column({ type: 'string', name: 'department_id' })
+  @Column({ type: 'text', name: 'department_id' })
   departmentId: string;
 
   @Column('int')

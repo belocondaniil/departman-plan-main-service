@@ -11,13 +11,13 @@ export class UserPosition {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column('array')
-  position: string[];
+  @Column('point')
+  position: string;
 
-  @Column({ type: 'string', name: 'department_id' })
+  @Column({ type: 'text', name: 'department_id' })
   departmentId: string;
 
-  @Column({ type: 'string', name: 'user_id' })
+  @Column({ type: 'text', name: 'user_id' })
   userId: string;
 
   @Column({ name: 'is_deleted', type: 'boolean', default: false })
