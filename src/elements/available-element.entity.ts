@@ -1,20 +1,20 @@
 import { ElementType } from 'src/config';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
-import { Element } from './element.entity';
+import { DepartmentElement } from './department-element.entity';
 
-@Entity({ name: 'standard-element' })
-export class StandardElement {
+@Entity({ name: 'available-element' })
+export class AvailableElement {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column('text')
   name: string;
 
-  @Column({ type: 'number', name: 'standard_width' })
+  @Column({ type: 'int', name: 'standard_width' })
   width: number;
 
-  @Column({ type: 'number', name: 'standard_height' })
+  @Column({ type: 'int', name: 'standard_height' })
   height: number;
 
   @Column({ type: 'enum', enum: ElementType })
@@ -29,6 +29,9 @@ export class StandardElement {
   @Column({ name: 'updated_at', type: 'date', default: 'NOW()' })
   updatedAt: Date;
 
-  @OneToMany(() => Element, (element) => element.type)
+  @OneToMany(
+    () => DepartmentElement,
+    (departmentElement) => departmentElement.type,
+  )
   element: Element[];
 }
