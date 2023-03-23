@@ -4,11 +4,15 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { AvailableElement } from './elements/available-element.entity';
+import { DepartmentElement } from './elements/department-element.entity';
+import { ElementsModule } from './elements/elements.module';
+import { UserPosition } from './user-position/user-position.entity';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: `.${process.env.NODE_ENV}.env`,
+      envFilePath: `.development.env`,
       isGlobal: true,
     }),
     TypeOrmModule.forRoot({
@@ -18,9 +22,10 @@ import { AppService } from './app.service';
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      entities: [],
+      entities: [DepartmentElement, AvailableElement, UserPosition],
       synchronize: true,
     }),
+    ElementsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
