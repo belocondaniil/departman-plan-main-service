@@ -12,7 +12,7 @@ import { UserPosition } from './user-position/user-position.entity';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: `.development.env`,
+      envFilePath: `.${process.env.NODE_ENV}.env`,
       isGlobal: true,
     }),
     TypeOrmModule.forRoot({
