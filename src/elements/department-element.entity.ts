@@ -6,24 +6,24 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
-import { StandardElement } from './standard-element.entity';
+import { AvailableElement } from './available-element.entity';
 
 @Entity()
-export class Element {
+export class DepartmentElement {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @ManyToOne(() => StandardElement, (standardElement) => standardElement.type)
+  @ManyToOne(() => AvailableElement, (standardElement) => standardElement.type)
   @JoinColumn()
-  type: StandardElement;
+  type: AvailableElement;
 
-  @Column('array')
-  position: string[];
+  @Column('point')
+  position: string;
 
-  @Column({ type: 'string', name: 'department_id' })
+  @Column({ type: 'text', name: 'department_id' })
   departmentId: string;
 
-  @Column('number')
+  @Column('int')
   width: number;
 
   @Column({ name: 'is_deleted', type: 'boolean', default: false })

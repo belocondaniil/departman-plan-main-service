@@ -13,7 +13,6 @@ export enum Envs {
 }
 
 export enum ElementType {
-  septum = 'septum',
   wall = 'wall',
   door = 'door',
   block = 'block',
