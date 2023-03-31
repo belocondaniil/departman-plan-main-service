@@ -4,25 +4,26 @@ import { ServerMessages } from 'src/config';
 import { unprocessableEntity } from 'src/config/errors';
 import { Repository } from 'typeorm';
 
+import { AvailableElement } from './available-element.entity';
 import { CreateStandardElementInterface } from './interface/standard-element.interface';
-import { StandardElement } from './standard-element.entity';
+import { UpdateAvailableElementInterface } from './interface/update-element.interface';
 
 @Injectable()
 export class ElementsService {
   constructor(
-    @InjectRepository(StandardElement)
-    private readonly standardElementRepository: Repository<StandardElement>,
+    @InjectRepository(AvailableElement)
+    private readonly standardElementRepository: Repository<AvailableElement>,
   ) {}
 
-  async getStandardElementByName(name: string) {
+  async getAvailableElementByName(name: string) {
     return this.standardElementRepository.findOne({
       where: { name },
       select: { id: true, name: true, type: true },
     });
   }
 
-  async createStandardElement(elementData: CreateStandardElementInterface) {
-    const standardElementRecord = await this.getStandardElementByName(
+  async createAvailableElement(elementData: CreateStandardElementInterface) {
+    const standardElementRecord = await this.getAvailableElementByName(
       elementData.name,
     );
 
@@ -33,5 +34,18 @@ export class ElementsService {
     return this.standardElementRepository.save({
       ...elementData,
     });
+  }
+
+  async updateAvailableElement(elementData: UpdateAvailableElementInterface) {
+    const { id: elementId, ...data } = elementData;
+
+    return this.standardElementRepository.update(
+      {
+        id: elementId,
+      },
+      {
+        ...data,
+      },
+    );
   }
 }
